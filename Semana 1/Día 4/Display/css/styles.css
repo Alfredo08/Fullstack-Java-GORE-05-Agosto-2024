@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+}
+
+.seccion1{
+    background-color: yellow;
+    border: 1px solid black;
+    padding: 5px;
+    width: 100px;
+    height: 200px;
+    display: inline;
+}
+
+.especial{
+    border: 1px solid black;
+    display: inline;
+}
+
+.regular{
+    border: 1px solid black;
+}
+
+.seccion2{
+    background-color: yellow;
+    border: 1px solid black;
+    padding: 5px;
+    width: 100px;
+    height: 200px;
+    display: inline-block;
+}
+
+.mixto{
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.seccion3{
+    background-color: yellow;
+    border: 1px solid black;
+    padding: 5px;
+    width: 50%;
+    height: 200px;
+    display: block;
+}
+
+.contenedor{
+    width: 500px;
+}
+
+.contenedor, .izquierda, .derecha{
+    border: 1px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.izquierda, .derecha{
+    display: inline-block;
+    width: 49%;
+}
