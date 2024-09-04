@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Tiempo Local </title>
+        <link href="./css/estilos.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <h1> Tiempo Local </h1>
+            <div class="ciudades">
+                <div class="ciudad" onclick="cargarInformacion(this, 'Buenos Aires')">
+                    Buenos Aires
+                </div>
+                <div class="ciudad" onclick="cargarInformacion(this, 'Ciudad de Mexico')">
+                    Ciudad de México
+                </div>
+                <div class="ciudad" onclick="cargarInformacion(this, 'Santiago')">
+                    Santiago
+                </div>
+                <div class="ciudad" onclick="cargarInformacion(this, 'Sao Paulo')">
+                    Sao Paulo
+                </div>
+                <div class="ciudad" onclick="cargarInformacion(this, 'Quito')">
+                    Quito
+                </div>
+            </div>
+            <div class="temperatura">
+                <span> Mostrar temperatura en: </span>
+                <select>
+                    <option> ºC </option>
+                    <option> ºF </option>
+                </select>
+            </div>
+        </nav>
+        <main>
+
+        </main>
+        <footer>
+            <div>
+                Detente! Tiempo de cookies. Usames cookies (tristemente, no las comestibles)
+                para personalizar contenido y anuncios, proporcionar funciones de redes 
+                sociales y analizar nuestro tárfico. <a href="#"> Lee más ...</a>
+            </div>
+            <button class="cookieAcepto">
+                Acepto
+            </button>
+        </footer>
+        <script src="./js/index.js"></script>
+    </body>
+</html>
