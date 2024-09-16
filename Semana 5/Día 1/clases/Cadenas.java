@@ -1,3 +1,4 @@
+package clases;
 public class Cadenas {
     public static void main(String args[]){
         String mensaje = new String("Me gusta mucho programar");

@@ -1,3 +1,4 @@
+package clases;
 public class Variables{
     public static void main(String args[]){
         // Tipos de datos
