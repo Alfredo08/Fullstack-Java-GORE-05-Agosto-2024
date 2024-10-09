@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.tarjeta-pelicula{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	padding: 15px;
+	background-color: #CBCBCB;
+	margin: 15px;
+}
+
+.pelicula-imagen{
+	width: 95%;
+}
