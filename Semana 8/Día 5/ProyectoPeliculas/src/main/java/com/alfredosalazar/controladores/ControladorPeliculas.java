@@ -1,0 +1,89 @@
+package com.alfredosalazar.controladores;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
+import com.alfredosalazar.modelos.Pelicula;
+import com.alfredosalazar.servicios.ServicioPeliculas;
+
+import jakarta.validation.Valid;
+
+@Controller
+public class ControladorPeliculas {
+	@Autowired
+	private final ServicioPeliculas servicioPeliculas;
+	
+	public ControladorPeliculas(ServicioPeliculas servicioPeliculas) {
+		this.servicioPeliculas = servicioPeliculas;
+	}
+	
+	@GetMapping("/peliculas")
+	public String desplegarPeliculas(Model modelo) {
+		List<Pelicula> peliculas = this.servicioPeliculas.obtenerTodas();
+		modelo.addAttribute("peliculas", peliculas);
+		return "peliculas.jsp";
+	}
+	
+	@GetMapping("/formulario/pelicula")
+	public String desplegarFormularioAgregarPelicula(@ModelAttribute Pelicula pelicula) {
+		return "formularioPelicula.jsp";
+	}
+	
+	@GetMapping("/detalle/pelicula/{id}")
+	public String desplegarDetallePelicula(@PathVariable Long id,
+										  Model modelo) {
+		Pelicula  detallePelicula = this.servicioPeliculas.obtenerUno(id);
+		modelo.addAttribute("detallePelicula", detallePelicula);
+		return "detallePelicula.jsp";
+	}
+	
+	@PostMapping("/agregar/pelicula")
+	public String agregarPelicula(@Valid @ModelAttribute Pelicula pelicula, 
+								  BindingResult validaciones) {
+		if(validaciones.hasErrors()) {
+			return "formularioPelicula.jsp";
+		}
+		/* TODO: validar que el título sea único */
+		this.servicioPeliculas.agregarUna(pelicula);
+		return "redirect:/peliculas";
+	}
+	
+	@DeleteMapping("/eliminar/pelicula/{id}")
+	public String eliminarPelicula(@PathVariable Long id) {
+		this.servicioPeliculas.eliminarUno(id);
+		return "redirect:/peliculas";
+	}
+	
+	@GetMapping("/formulario/editar/pelicula/{id}")
+	public String desplegarFormularioEditarPelicula(@ModelAttribute Pelicula pelicula,
+												    @PathVariable Long id,
+												    Model modelo) {
+		pelicula = this.servicioPeliculas.obtenerUno(id);
+		modelo.addAttribute("pelicula", pelicula);
+		
+		return "formularioEditarPelicula.jsp";
+	}
+	
+	@PutMapping("/actualizar/pelicula/{id}")
+	public String actualizarPelicula(@Valid @ModelAttribute Pelicula pelicula,
+									 BindingResult validaciones,
+									 @PathVariable Long id) {
+		if(validaciones.hasErrors()) {
+			return "formularioEditarPelicula.jsp";
+		}
+		
+		this.servicioPeliculas.actualizarUna(pelicula);
+		return "redirect:/peliculas";
+	}
+	
+}
